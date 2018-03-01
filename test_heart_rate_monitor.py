@@ -3,7 +3,6 @@ def test_heart_rate_monitor():
     from heart_rate_monitor import HeartRateMonitor
 
     output = HeartRateMonitor("test_data1.csv", 1)
-    assert output.scale == 1
     assert output.mean_hr_bpm == 1
     assert output.voltage_extreemes == 1
     assert output.duration == 1
