@@ -99,9 +99,9 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-             tmax, vmax = np.max(data, axis=0)
-             tmin, vmin = np.min(data, axis=0)
-             voltage_extreemes = (vmax, vmin);
+            tmax, vmax = np.max(data, axis=0)
+            tmin, vmin = np.min(data, axis=0)
+            voltage_extreemes = (vmax, vmin)
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
