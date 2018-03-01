@@ -11,7 +11,6 @@ def test_heart_rate_monitor():
     assert output.beats == 1
 
     output = HeartRateMonitor("test_data10.csv", 1)
-    assert output.scale == 1
     assert output.mean_hr_bpm == 1
     assert output.voltage_extreemes == 1
     assert output.duration == 1
@@ -19,7 +18,6 @@ def test_heart_rate_monitor():
     assert output.beats == 1
 
     output = HeartRateMonitor("test_data15.csv", 1)
-    assert output.scale == 1
     assert output.mean_hr_bpm == 1
     assert output.voltage_extreemes == 1
     assert output.duration == 1
