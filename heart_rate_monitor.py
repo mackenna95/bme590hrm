@@ -69,7 +69,7 @@ class HeartRateMonitor:
         try:
             data_csv = ReadCsv(data_csv)
             scale_np = np.asarray(scale)
-            data = data_csv.data * scale_np[np.newaxis,:]
+            data = data_csv.data * scale_np[np.newaxis, :]
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")

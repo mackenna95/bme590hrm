@@ -30,7 +30,10 @@ def test_heart_rate_monitor():
 
     # errors:
     pytest.raises(TypeError, HeartRateMonitor, [1, 1], [1, 1])
-    pytest.raises(TypeError, HeartRateMonitor, "testdata.csv", "data.csv", [1, 1])
-    pytest.raises(ValueError, HeartRateMonitor, "testdata_empty.csv", [1, 1], [1, 1])
-    pytest.raises(TypeError, HeartRateMonitor, "testdata.txt", [1, 1], [1, 1])
+    pytest.raises(TypeError, HeartRateMonitor, "testdata.csv",
+                                               "data.csv", [1, 1])
+    pytest.raises(ValueError, HeartRateMonitor, "testdata_empty.csv",
+                                                [1, 1], [1, 1])
+    pytest.raises(TypeError, HeartRateMonitor, "testdata.txt",
+                                               [1, 1], [1, 1])
     return
