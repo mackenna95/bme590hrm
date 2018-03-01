@@ -1,5 +1,6 @@
 from read_csv import ReadCsv
 
+
 class HeartRateMonitor:
     """This is a HeartRateMonitor class.
 
