@@ -16,12 +16,29 @@ class HeartRateMonitor:
 
     Arguments:
         data (string): string containing name of csv file
-        scale (int/float): to convert time to seconds
-        (i.e. 60 if the data is logged in minutes)
-        interval (???): time interval for average heart rate
+        scale (list): x and y scaling factors for data
+        (i.e. (60, 0.001) if the data is logged in minutes and milivolts)
+        interval (list): time interval for average heart rate
     """
 
     def __init__(self, data_csv, scale, interval):
+        import logging
+        logging.basicConfig(filename="heart_rate_monitor_log.txt",
+                            format='%(asctime)s %(message)s',
+                            datefmt='%m/%d/%Y %I:%M:%S %p')
+        if not isinstance(data_csv, str):
+            logging.warning('Your file name is not a string')
+            raise TypeError("file name is not a string")
+        if ".csv" not in data_csv:
+            logging.warning('Your file is not a .csv file')
+            raise TypeError("file is not a .csv file")
+        if not isinstance(scale, list):
+            logging.warning('Your scale is not a list')
+            raise TypeError("scale is not a list")
+        if not isinstance(interval, list):
+            logging.warning('Your interval is not a list')
+            raise TypeError("interval is not a list")
+
         self.mean_hr_bpm = None
         self.voltage_extreemes = None
         self.duration = None
@@ -44,9 +61,26 @@ class HeartRateMonitor:
         logging.basicConfig(filename="heart_rate_monitor_log.txt",
                             format='%(asctime)s %(message)s',
                             datefmt='%m/%d/%Y %I:%M:%S %p')
-        data_csv = ReadCsv(data_csv)
+
+        if not self:
+            logging.warning('data set is empty')
+            raise ValueError("data set is empty")
+
+        try:
+            data_csv = ReadCsv(data_csv)
+            scale_np = np.asarray(scale)
+            data = data_csv.data * scale_np[np.newaxis,:]
+        except TypeError:
+            logging.debug('TypeError: non-numeric')
+            raise TypeError("List contains non-numeric elements.")
+        except ValueError:
+            logging.debug('ValueError: empty list')
+            raise ValueError("List is empty.")
+        except ImportError:
+            logging.debug('ImportError: packages not found')
+            raise ImportError("Import packages not found.")
         logging.info("Success: data as np array returned.")
-        return data_csv.data
+        return data
 
     def return_mean_hr_bpm(self, data, interval):
         """
