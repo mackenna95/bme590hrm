@@ -4,13 +4,13 @@ class HeartRateMonitor:
     __init__ sets the attributes
 
     Attributes:
-        mean_hr_bpm (int/float): estimated average heart rate over a user-specified number of minutes
+        mean_hr_bpm (int/float): heart rate over a user-specified number of minutes
         voltage_extreemes (tuple): minimum and maximum lead voltages
         duration (int/float): time duration of the ECG strip
         num_beats (int/float): number of detected beats in the strip
         beats (numpy array): times when a beat occurred
         
-    Input: 
+    Arguments: 
         data (string): string containing name of csv file
         scale (int/float): to convert time to seconds
         (i.e. 60 if the data is logged in minutes)
@@ -24,7 +24,6 @@ class HeartRateMonitor:
         self.duration = None
         self.num_beats = None
         self.beats = None
-        self.return_scale()
         self.return_mean_hr_bpm()
         self.return_voltage_extreemes()
         self.return_duration()
@@ -51,7 +50,7 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            mean_hr_bpm = 1 # "CODE HERE" /////
+            mean_hr_bpm = 1  #  "CODE HERE" /////
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
@@ -83,7 +82,7 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            voltage_extreemes = 1 # "CODE HERE" /////
+            voltage_extreemes = 1  #  "CODE HERE" /////
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
@@ -115,7 +114,7 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            duration = 1 # "CODE HERE" /////
+            duration = 1  #  "CODE HERE" /////
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
@@ -125,7 +124,7 @@ class HeartRateMonitor:
         except ImportError:
             logging.debug('ImportError: packages not found')
             raise ImportError("Import packages not found.")
-        self.duration = duration # SELF.BLANK HERE ////
+        self.duration = duration  #  SELF.BLANK HERE ////
         logging.info("Success: duration returned.")
 
     def return_num_beats(self):
@@ -147,7 +146,7 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            num_beats = 1 # "CODE HERE" /////
+            num_beats = 1  #  "CODE HERE" /////
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
@@ -157,7 +156,7 @@ class HeartRateMonitor:
         except ImportError:
             logging.debug('ImportError: packages not found')
             raise ImportError("Import packages not found.")
-        self.num_beats = num_beats # SELF.BLANK HERE ////
+        self.num_beats = num_beats  #  SELF.BLANK HERE ////
         logging.info("Success: num_beats returned.")
 
     def return_beats(self):
@@ -179,7 +178,7 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            beats = 1 # "CODE HERE" /////
+            beats = 1  #  "CODE HERE" /////
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
@@ -189,5 +188,5 @@ class HeartRateMonitor:
         except ImportError:
             logging.debug('ImportError: packages not found')
             raise ImportError("Import packages not found.")
-        self.beats = beats # SELF.BLANK HERE ////
+        self.beats = beats  #  SELF.BLANK HERE ////
         logging.info("Success: beats returned.")

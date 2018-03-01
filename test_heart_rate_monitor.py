@@ -24,7 +24,7 @@ def test_heart_rate_monitor():
     assert output.num_beats == 1
     assert output.beats == 1
 
-    # errors: 
+    # errors:
     pytest.raises(TypeError, HeartRateMonitor, 1, 1)
     pytest.raises(TypeError, HeartRateMonitor, "testdata.csv", "data.csv")
     pytest.raises(Error, HeartRateMonitor, "testdata_does_not_exist.csv", 1)
