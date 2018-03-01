@@ -6,7 +6,6 @@ from numpy import genfromtxt
 
 class CsvJson:
 
-#Get Command Line Arguments
     def __init__(self, fname):
         logging.basicConfig(filename="number_manipulation_log.txt",
                             format='%(asctime)s %(message)s',
