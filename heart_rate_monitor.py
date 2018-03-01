@@ -83,7 +83,6 @@ class HeartRateMonitor:
 
         try:
             voltage_extreemes = 1  # "CODE HERE" /////
-            key_max = max(data.keys(), key=(lambda k: data[k]))
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
