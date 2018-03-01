@@ -9,6 +9,10 @@ class ReadCsv:
         logging.basicConfig(filename="heart_rate_monitor_log.txt",
                             format='%(asctime)s %(message)s',
                             datefmt='%m/%d/%Y %I:%M:%S %p')
+        if not self:
+            logging.warning('data set is empty')
+            raise ValueError("data set is empty")
+
         self.data = None
         self.read_csv(fname)
 
