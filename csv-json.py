@@ -24,8 +24,8 @@ class CsvJson:
         # try:
         #     data_csv = genfromtxt(fname, delimiter=',')
         #     write_json(data_csv)
-        # except Exception: # this is always getting flagged. 
-        # Try to write it in a diferent way. 
+        # except Exception: # this is always getting flagged.
+        # Try to write it in a diferent way.
         # ALWAYS CAUGHT HERE /////
         #     logging.debug('Exception: not a csv file')
         #     raise Exception("Exception: not a csv file")
