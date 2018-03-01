@@ -58,13 +58,13 @@ class HeartRateMonitor:
         except ImportError:
             logging.debug('ImportError: packages not found')
             raise ImportError("Import packages not found.")
-        self.mean_hr_bpm = mean_hr_bpm 
+        self.mean_hr_bpm = mean_hr_bpm
         logging.info("Success: mean_hr_bpm returned.")
 
     def return_voltage_extreemes(self):
         """
         :param self:                ECG data
-        :returns voltage_extreemes: tuple containing minimum and maximum lead voltages
+        :returns voltage_extreemes: tuple containing min, max lead voltages
         :raises TypeError:          value not int or float
         :raises ValueError:         list is empty
         :raises ImportError:        packages not found
