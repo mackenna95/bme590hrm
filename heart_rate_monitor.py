@@ -27,14 +27,14 @@ class HeartRateMonitor:
         self.duration = None
         self.num_beats = None
         self.beats = None
-        data = self.ReadCsv(data_csv, scale)
+        data = self.Read_data(data_csv, scale)
         self.return_mean_hr_bpm(data, interval)
         self.return_voltage_extreemes(data)
         self.return_duration(data)
         self.return_num_beats(data)
         self.return_beats(data)
 
-    def ReadCsv(self, data_csv, scale):
+    def Read_data(self, data_csv, scale):
         """
         :param self:    ECG data
         :returns data:  ECG data as np array
@@ -133,7 +133,9 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            duration = 1  # "CODE HERE" /////
+            tmax, vmax = np.max(data, axis=0)
+            tmin, vmin = np.min(data, axis=0)
+            duration = tmax-tmin
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
@@ -143,7 +145,7 @@ class HeartRateMonitor:
         except ImportError:
             logging.debug('ImportError: packages not found')
             raise ImportError("Import packages not found.")
-        self.duration = duration  # SELF.BLANK HERE ////
+        self.duration = duration
         logging.info("Success: duration returned.")
 
     def return_num_beats(self, data):
