@@ -1,3 +1,6 @@
+from read_csv import ReadCsv
+
+
 class HeartRateMonitor:
     """This is a HeartRateMonitor class.
 
@@ -14,22 +17,22 @@ class HeartRateMonitor:
         data (string): string containing name of csv file
         scale (int/float): to convert time to seconds
         (i.e. 60 if the data is logged in minutes)
+        interval (???): time interval for average heart rate
     """
 
-    def __init__(self, data, scale):
-        self.scale = scale
+    def __init__(self, data, scale, interval):
         self.mean_hr_bpm = None
         self.voltage_extreemes = None
         self.duration = None
         self.num_beats = None
         self.beats = None
-        self.return_mean_hr_bpm()
-        self.return_voltage_extreemes()
-        self.return_duration()
-        self.return_num_beats()
-        self.return_beats()
+        self.return_mean_hr_bpm(data, scale, interval)
+        self.return_voltage_extreemes(data, scale)
+        self.return_duration(data, scale)
+        self.return_num_beats(data, scale)
+        self.return_beats(data, scale)
 
-    def return_mean_hr_bpm(self):
+    def return_mean_hr_bpm(self, data, scale, interval):
         """
         :param self:            ECG data
         :returns mean_hr_bpm:   heart rate over a user-specified minutes
@@ -61,7 +64,7 @@ class HeartRateMonitor:
         self.mean_hr_bpm = mean_hr_bpm
         logging.info("Success: mean_hr_bpm returned.")
 
-    def return_voltage_extreemes(self):
+    def return_voltage_extreemes(self, data, scale):
         """
         :param self:                ECG data
         :returns voltage_extreemes: tuple containing min, max lead voltages
@@ -93,7 +96,7 @@ class HeartRateMonitor:
         self.voltage_extreemes = voltage_extreemes
         logging.info("Success: voltage_extreemes returned.")
 
-    def return_duration(self):
+    def return_duration(self, data, scale):
         """
         :param self:            ECG data
         :returns duration:      time duration of the ECG strip
@@ -125,7 +128,7 @@ class HeartRateMonitor:
         self.duration = duration  # SELF.BLANK HERE ////
         logging.info("Success: duration returned.")
 
-    def return_num_beats(self):
+    def return_num_beats(self, data, scale):
         """
         :param self:         ECG data
         :returns num_beats:  number of detected beats in the strip
@@ -157,7 +160,7 @@ class HeartRateMonitor:
         self.num_beats = num_beats  # SELF.BLANK HERE ////
         logging.info("Success: num_beats returned.")
 
-    def return_beats(self):
+    def return_beats(self, data, scale):
         """
         :param self:        ECG data
         :returns beats:     numpy array of times when a beat occurred
