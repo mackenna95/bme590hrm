@@ -49,7 +49,10 @@ class HeartRateMonitor:
         data = self.Read_data(data_csv, scale)
         self.return_voltage_extreemes(data)
         self.return_duration(data)
-        self.beats(data, interval)
+        peak_times = self.beat_calculation(data)
+        self.return_mean_hr_bpm(peak_times, interval)
+        self.return_num_beats(peak_times)
+        self.return_beats(peak_times)
 
     def Read_data(self, data_csv, scale):
         """
@@ -150,10 +153,10 @@ class HeartRateMonitor:
         self.duration = duration
         logging.info("Success: duration returned.")
 
-    def beats(self, data, interval):
+    def beat_calculation(self, data):
         """
         :param self:         ECG data
-        :returns num_beats:  number of detected beats in the strip
+        :returns peak_times: all beat times in dataset
         :raises TypeError:   value not int or float
         :raises ValueError:  list is empty
         :raises ImportError: packages not found
@@ -178,19 +181,17 @@ class HeartRateMonitor:
                                                 np.arange(1, 300))
             peak_times = data[peaks, 0]
 
-        except TypeError:
-            logging.debug('TypeError: non-numeric')
-            raise TypeError("List contains non-numeric elements.")
+        # except TypeError:
+        #     logging.debug('TypeError: non-numeric')
+        #     raise TypeError("List contains non-numeric elements.")
         except ValueError:
             logging.debug('ValueError: empty list')
             raise ValueError("List is empty.")
         except ImportError:
             logging.debug('ImportError: packages not found')
             raise ImportError("Import packages not found.")
-        self.return_mean_hr_bpm(peak_times, interval)
-        self.return_num_beats(peak_times)
-        self.return_beats(peak_times)
         logging.info("Success: beats ran.")
+        return peak_times
 
     def return_mean_hr_bpm(self, peak_times, interval):
         """
