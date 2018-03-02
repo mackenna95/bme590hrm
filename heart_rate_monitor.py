@@ -1,5 +1,7 @@
 import numpy as np
 import scipy
+import os.path
+import json
 from scipy import signal
 from read_csv import ReadCsv
 
@@ -52,6 +54,7 @@ class HeartRateMonitor:
         self.return_beats(data)
         self.return_mean_hr_bpm(interval)
         self.return_num_beats()
+        self.write_json(data_csv)
 
     def Read_data(self, data_csv, scale):
         """
@@ -264,3 +267,25 @@ class HeartRateMonitor:
             raise ImportError("Import packages not found.")
         self.num_beats = num_beats
         logging.info("Success: num_beats returned.")
+
+    def write_json(self, fname):
+        """
+        :param self:         ECG data
+        :raises TypeError:   value not int or float
+        :raises ValueError:  list is empty
+        :raises ImportError: packages not found
+        """
+        # create file name
+        new_file_name = os.path.splitext(fname)[0]+'.json'
+
+        #convert to json format      
+        convert_beats = self.beats.tolist()
+        file_info = {'mean_hr_bpm': self.mean_hr_bpm,
+                     'voltage_extreemes': self.voltage_extreemes,
+                     'duration': self.duration,
+                     'num_beats': self.num_beats,
+                     'beats': convert_beats}
+
+        # write to file
+        with open(new_file_name, 'w') as outfile:
+            json.dump(file_info, outfile, indent=2)

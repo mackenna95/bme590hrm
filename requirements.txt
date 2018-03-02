@@ -3,3 +3,5 @@ pytest-pep8
 pytest-cov
 numpy
 scipy
+os
+json

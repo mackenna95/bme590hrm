@@ -1,6 +1,8 @@
 def test_heart_rate_monitor():
     import pytest
     import numpy as np
+    import os.path
+    import json
     from heart_rate_monitor import HeartRateMonitor
 
     tolerance = 0.0000001
@@ -29,6 +31,10 @@ def test_heart_rate_monitor():
                                          2.43530000e+01, 2.51530000e+01,
                                          2.59610000e+01, 2.67670000e+01,
                                          2.75830000e+01]))
+    assert os.path.isfile("test_data1.csv")
+    json_data=open("test_data1.json").read()
+    data = json.loads(json_data)
+    os.remove("test_data1.json")
 
     output = HeartRateMonitor("test_data10.csv", [1, 1], [1, 2])
     assert output.mean_hr_bpm - 120 < tolerance
@@ -46,6 +52,10 @@ def test_heart_rate_monitor():
                                          20.136, 20.739, 21.319, 21.961,
                                          22.633, 23.3, 23.944, 24.594,
                                          25.244, 25.894, 26.542, 27.2]))
+    assert os.path.isfile("test_data10.csv")
+    json_data=open("test_data10.json").read()
+    data = json.loads(json_data)
+    os.remove("test_data10.json")
 
     output = HeartRateMonitor("test_data15.csv", [1, 1], [0, 13])
     assert output.mean_hr_bpm - 124.61538461538463 < tolerance
@@ -68,6 +78,11 @@ def test_heart_rate_monitor():
                                          1.19820000e+01, 1.22680000e+01,
                                          1.26420000e+01, 1.33250000e+01,
                                          1.36360000e+01]))
+
+    assert os.path.isfile("test_data15.csv")
+    json_data=open("test_data15.json").read()
+    data = json.loads(json_data)
+    os.remove("test_data15.json")
 
     # errors:
     pytest.raises(TypeError, HeartRateMonitor, [1, 1], [1, 1])
