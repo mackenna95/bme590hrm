@@ -52,7 +52,6 @@ class HeartRateMonitor:
         self.return_beats(data)
         self.return_mean_hr_bpm(interval)
         self.return_num_beats()
-        
 
     def Read_data(self, data_csv, scale):
         """
