@@ -175,7 +175,10 @@ class HeartRateMonitor:
             mean = np.mean(data[:, 1])
             data[:,1] -= np.mean(data[:, 1])
             autocorr = np.correlate(data[:, 1], data[:, 1], mode='full')
-            temp = autocorr[autocorr.size/2:]/autocorr[autocorr.size/2]
+            if autocorr.size % 2 != 0:
+                autocorr = np.append(autocorr, autocorr[autocorr.size-1])
+            print(print, autocorr.size)
+            temp = autocorr[int(autocorr.size/2):]/autocorr[int(autocorr.size/2)]
             autocorr_filtered = scipy.signal.savgol_filter(temp, 61, 2)
             peaks = scipy.signal.find_peaks_cwt(autocorr_filtered,
                                                 np.arange(1, 300))
