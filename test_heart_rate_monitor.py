@@ -9,7 +9,7 @@ def test_heart_rate_monitor():
     assert output.voltage_extreemes[0] - 1.05 < tolerance
     assert output.voltage_extreemes[1] + 0.68 < tolerance
     assert output.duration == 27.775
-    assert output.num_beats == 1
+    assert output.num_beats == 35
     assert output.beats == 1
 
     output = HeartRateMonitor("test_data10.csv", [1, 1], [1, 1])

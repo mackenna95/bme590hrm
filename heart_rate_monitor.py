@@ -169,13 +169,14 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            mean = np.mean(data[:,1])
-            data[:,1] -= np.mean(data[:,1])
-            data_autocorr = np.correlate(data[:,1], data[:,1], mode='full')
-            temp = data_autocorr[data_autocorr.size/2:]/data_autocorr[data_autocorr.size/2]
+            mean = np.mean(data[:, 1])
+            data[:,1] -= np.mean(data[:, 1])
+            autocorr = np.correlate(data[:, 1], data[:, 1], mode='full')
+            temp = autocorr[autocorr.size/2:]/autocorr[autocorr.size/2]
             autocorr_filtered = scipy.signal.savgol_filter(temp, 61, 2)
-            peaks = scipy.signal.find_peaks_cwt(autocorr_filtered, np.arange(1, 300))
-            peak_times = data[peaks,0]
+            peaks = scipy.signal.find_peaks_cwt(autocorr_filtered,
+                                                np.arange(1, 300))
+            peak_times = data[peaks, 0]
 
         except TypeError:
             logging.debug('TypeError: non-numeric')
@@ -242,15 +243,7 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            mean = np.mean(data[:,1])
-            data[:,1] -= np.mean(data[:,1])
-            data_autocorr = np.correlate(data[:,1], data[:,1], mode='full')
-            temp = data_autocorr[data_autocorr.size/2:]/data_autocorr[data_autocorr.size/2]
-            autocorr_filtered = scipy.signal.savgol_filter(temp, 61, 2)
-            peaks = scipy.signal.find_peaks_cwt(autocorr_filtered, np.arange(1, 300))
-            peak_times = data[peaks,0]
-            
-            num_beats = 1
+            num_beats = len(peak_times)
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
@@ -260,7 +253,7 @@ class HeartRateMonitor:
         except ImportError:
             logging.debug('ImportError: packages not found')
             raise ImportError("Import packages not found.")
-        self.num_beats = num_beats  # SELF.BLANK HERE ////
+        self.num_beats = num_beats
         logging.info("Success: num_beats returned.")
 
     def return_beats(self, peak_times):
