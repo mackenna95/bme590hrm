@@ -5,8 +5,8 @@ def test_heart_rate_monitor():
 
     tolerance = 0.0000001
 
-    output = HeartRateMonitor("test_data1.csv", [1, 1], [1, 1])
-    assert output.mean_hr_bpm == 1
+    output = HeartRateMonitor("test_data1.csv", [1, 1], [1, 10])
+    assert output.mean_hr_bpm - 73.33333333333334 < tolerance
     assert output.voltage_extreemes[0] - 1.05 < tolerance
     assert output.voltage_extreemes[1] + 0.68 < tolerance
     assert output.duration == 27.775
@@ -30,8 +30,8 @@ def test_heart_rate_monitor():
                                          2.59610000e+01, 2.67670000e+01,
                                          2.75830000e+01]))
 
-    output = HeartRateMonitor("test_data10.csv", [1, 1], [1, 1])
-    assert output.mean_hr_bpm == 1
+    output = HeartRateMonitor("test_data10.csv", [1, 1], [1, 2])
+    assert output.mean_hr_bpm - 120 < tolerance
     assert output.voltage_extreemes[0] - 1.555 < tolerance
     assert output.voltage_extreemes[1] + 1.58 < tolerance
     assert output.duration == 27.775
@@ -47,8 +47,8 @@ def test_heart_rate_monitor():
                                          22.633, 23.3, 23.944, 24.594,
                                          25.244, 25.894, 26.542, 27.2]))
 
-    output = HeartRateMonitor("test_data15.csv", [1, 1], [1, 1])
-    assert output.mean_hr_bpm == 1
+    output = HeartRateMonitor("test_data15.csv", [1, 1], [0, 13])
+    assert output.mean_hr_bpm - 124.61538461538463 < tolerance
     assert output.voltage_extreemes[0] - 0.7 < tolerance
     assert output.voltage_extreemes[1] + 0.33077 < tolerance
     assert output.duration == 13.887

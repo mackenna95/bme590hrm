@@ -217,7 +217,10 @@ class HeartRateMonitor:
             raise ValueError("list is empty")
 
         try:
-            mean_hr_bpm = 1  # "CODE HERE" /////
+            a = self.beats < interval[0]
+            b = self.beats > interval[1]
+            total_beats = (self.beats.size-a.sum()-b.sum())
+            mean_hr_bpm = (total_beats/(interval[1]-interval[0]))*60
         except TypeError:
             logging.debug('TypeError: non-numeric')
             raise TypeError("List contains non-numeric elements.")
