@@ -217,6 +217,12 @@ class HeartRateMonitor:
         if not isinstance(interval, list):
             logging.warning('Your interval is not a list')
             raise TypeError("interval is not a list")
+        if interval[1] > self.beats[self.beats.size-1]:
+            logging.warning('Interval extends past the end of file')
+            raise ValueError("Your interval extends past the end of file")
+        if interval[0] > interval[1]:
+            logging.warning('Interval extends past itself')
+            raise ValueError("Your interval extends past itself")
         try:
             a = self.beats < interval[0]
             b = self.beats > interval[1]
