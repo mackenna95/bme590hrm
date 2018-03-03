@@ -32,7 +32,7 @@ def test_heart_rate_monitor():
                                          2.59610000e+01, 2.67670000e+01,
                                          2.75830000e+01]))
     assert os.path.isfile("test_data1.csv")
-    json_data=open("test_data1.json").read()
+    json_data = open("test_data1.json").read()
     data = json.loads(json_data)
     os.remove("test_data1.json")
 
@@ -53,7 +53,7 @@ def test_heart_rate_monitor():
                                          22.633, 23.3, 23.944, 24.594,
                                          25.244, 25.894, 26.542, 27.2]))
     assert os.path.isfile("test_data10.csv")
-    json_data=open("test_data10.json").read()
+    json_data = open("test_data10.json").read()
     data = json.loads(json_data)
     os.remove("test_data10.json")
 
@@ -80,7 +80,7 @@ def test_heart_rate_monitor():
                                          1.36360000e+01]))
 
     assert os.path.isfile("test_data15.csv")
-    json_data=open("test_data15.json").read()
+    json_data = open("test_data15.json").read()
     data = json.loads(json_data)
     os.remove("test_data15.json")
 

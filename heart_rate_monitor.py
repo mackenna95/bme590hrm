@@ -278,7 +278,7 @@ class HeartRateMonitor:
         # create file name
         new_file_name = os.path.splitext(fname)[0]+'.json'
 
-        #convert to json format      
+        # convert to json format
         convert_beats = self.beats.tolist()
         file_info = {'mean_hr_bpm': self.mean_hr_bpm,
                      'voltage_extreemes': self.voltage_extreemes,

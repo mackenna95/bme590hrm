@@ -3,5 +3,3 @@ pytest-pep8
 pytest-cov
 numpy
 scipy
-# os.path
-# json
