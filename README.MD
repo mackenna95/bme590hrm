@@ -2,6 +2,7 @@ This README details the function and use of 'heart_rate_monitor.py' and 'read_cs
 
 ## 'heart_rate_monitor.py'
 'heart_rate_monitor.py' contains the class HeartRateMonitor
+
     Attributes:
         mean_hr_bpm (int/float): heart rate over a user-specified minutes
         voltage_extreemes (tuple): minimum and maximum lead voltages
@@ -17,6 +18,7 @@ This README details the function and use of 'heart_rate_monitor.py' and 'read_cs
 
 ## 'read_csv.py'
 'read_csv.py' contains the class ReadCsv
+
     Attributes:
         data (ndarray): Csv Values in single array
 
