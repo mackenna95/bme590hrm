@@ -93,7 +93,7 @@ def test_heart_rate_monitor():
     pytest.raises(TypeError, HeartRateMonitor, "testdata.txt",
                                                [1, 1], [1, 1])
     pytest.raises(ValueError, HeartRateMonitor, "test_data1.csv",
-                                               [1, 1], [1, 10000])
+                                                [1, 1], [1, 10000])
     pytest.raises(ValueError, HeartRateMonitor, "test_data1.csv",
-                                               [1, 1], [2, 1])
+                                                [1, 1], [2, 1])
     return
